@@ -11,8 +11,8 @@ public class Main {
         st = new StringTokenizer(br.readLine());
         int n = Integer.parseInt(st.nextToken());
         long d = Integer.parseInt(st.nextToken());
-        ArrayList<Integer> monster = new ArrayList<>();
-        ArrayList<Integer> weapon = new ArrayList<>();
+        PriorityQueue<Integer> monster = new PriorityQueue<>();
+        PriorityQueue<Integer> weapon = new PriorityQueue<>();
         for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
             int a = Integer.parseInt(st.nextToken());
@@ -23,20 +23,14 @@ public class Main {
                 weapon.add(b);
             }
         }
-        Collections.sort(monster);
-        Collections.sort(weapon);
-        int i = 0;
-        int j = 0;
         int answer = 0;
         while (true) {
-            if (monster.size() > i && d > monster.get(i)) {
-                d += monster.get(i);
-                i++;
+            if (!monster.isEmpty() && d > monster.peek()) {
+                d += monster.poll();
                 answer++;
             } else {
-                if (weapon.size() > j) {
-                    d *= weapon.get(j);
-                    j++;
+                if (!weapon.isEmpty()) {
+                    d *= weapon.poll();
                     answer++;
                 } else {
                     break;
