@@ -8,7 +8,7 @@ public class Main {
     static StringTokenizer st;
 
     static int n, m;
-    static Map<Integer, Integer> hm;
+    static int check[];
     static boolean visited[];
     static Queue<int[]> qu;
 
@@ -25,8 +25,8 @@ public class Main {
                     System.out.println(now[1] + 1);
                     return;
                 }
-                if (hm.containsKey(next)) {
-                    int teleport = hm.get(next);
+                if (check[next] > 0) {
+                    int teleport = check[next];
                     qu.add(new int [] {teleport, now[1] + 1});
                     visited[teleport] = true;
                     continue;
@@ -41,14 +41,14 @@ public class Main {
         st = new StringTokenizer(br.readLine());
         n = Integer.parseInt(st.nextToken());
         m = Integer.parseInt(st.nextToken());
-        hm = new HashMap<>();
         qu = new ArrayDeque<>();
+        check = new int [101];
         visited = new boolean[101];
         for (int i = 0; i < n + m; i++) {
             st = new StringTokenizer(br.readLine());
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
-            hm.put(a, b);
+            check[a] = b;
         }
         solve();
     }
