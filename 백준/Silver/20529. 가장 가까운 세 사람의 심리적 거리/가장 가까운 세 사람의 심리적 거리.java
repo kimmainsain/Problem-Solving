@@ -14,6 +14,10 @@ public class Main {
             int m = Integer.parseInt(br.readLine());
             st = new StringTokenizer(br.readLine());
             Map<String, Integer> hm = new HashMap<>();
+            if (m > 32) {
+                sb.append(0).append("\n");
+                continue;
+            }
             for (int j = 0; j < m; j++) {
                 String s = st.nextToken();
                 if (hm.containsKey(s)) {
@@ -39,11 +43,7 @@ public class Main {
                         int count = 0;
                         for (int l = 0; l < 4; l++) {
                             if (list.get(j).charAt(l) != list.get(k).charAt(l)) count++;
-                        }
-                        for (int l = 0; l < 4; l++) {
                             if (list.get(j).charAt(l) != list.get(o).charAt(l)) count++;
-                        }
-                        for (int l = 0; l < 4; l++) {
                             if (list.get(o).charAt(l) != list.get(k).charAt(l)) count++;
                         }
                         min = Math.min(min, count);
