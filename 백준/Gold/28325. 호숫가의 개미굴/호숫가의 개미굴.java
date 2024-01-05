@@ -10,10 +10,10 @@ public class Main {
         int n = Integer.parseInt(br.readLine());
         boolean visited[] = new boolean [n];
         int check[] = new int [n];
-        int answer = 0;
+        long answer = 0;
         st = new StringTokenizer(br.readLine());
         for (int i = 0; i < n; i++) {
-            int v = Integer.parseInt(st.nextToken());
+            long v = Long.parseLong(st.nextToken());
             if (v != 0) {
                 answer += v;
                 check[i] = -1;
