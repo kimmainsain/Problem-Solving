@@ -12,22 +12,25 @@ public class Main {
         int check[] = new int [n];
         long answer = 0;
         st = new StringTokenizer(br.readLine());
+        int start = 0;
         for (int i = 0; i < n; i++) {
             long v = Long.parseLong(st.nextToken());
             if (v != 0) {
                 answer += v;
                 check[i] = -1;
+                start = i;
             }
         }
         for (int i = 0; i < n; i++) {
-            if (check[i] == -1) continue;
-            int prev = i - 1;
-            int next = i + 1;
-            if (i == 0) prev = n - 1;
-            if (i == n - 1) next = 0;
+            int index = (start + i) % n;
+            if (check[index] == -1) continue;
+            int prev = index - 1;
+            int next = index + 1;
+            if (index == 0) prev = n - 1;
+            if (index == n - 1) next = 0;
             if (!visited[prev] && !visited[next]) {
                 answer++;
-                visited[i] = true;
+                visited[index] = true;
             }
         }
         System.out.println(answer);
