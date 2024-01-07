@@ -38,16 +38,7 @@ public class Main {
         int n = Integer.parseInt(br.readLine());
         for (int i = 0; i < n; i++) {
             String str = br.readLine();
-            if (str.length() == 3) {
-                char a = str.charAt(0);
-                char b = str.charAt(1);
-                char c = str.charAt(2);
-                if (a == c) sb.append(0).append("\n");
-                else if (a == b || a == c || b == c) sb.append(1).append("\n");
-                else sb.append(2).append("\n");
-            } else {
-                sb.append(find(0, str.length() - 1, str)).append("\n");
-            }
+            sb.append(find(0, str.length() - 1, str)).append("\n");
         }
         System.out.println(sb);
     }
