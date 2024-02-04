@@ -6,22 +6,20 @@ public class Main {
     static StringTokenizer st;
     static StringBuilder sb = new StringBuilder();
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         st = new StringTokenizer(br.readLine());
         int n = Integer.parseInt(st.nextToken());
         int m = Integer.parseInt(st.nextToken());
-        int map[] = new int[n];
+        int map[] = new int[n + 1];
         st = new StringTokenizer(br.readLine());
-        for (int i = 0; i < n; i++) {
+        for (int i = 1; i < n + 1; i++) {
             map[i] = Integer.parseInt(st.nextToken());
+            map[i] += map[i - 1];
         }
         int max = -2147483648;
-        for (int i = 0; i < n - m + 1; i++) {
-            int sum = 0;
-            for (int j = i; j < m + i; j++) {
-                sum += map[j];
-            }
-            max = Math.max(sum, max);
+        for (int i = m; i < n + 1; i++) {
+            int sub = map[i] - map[i - m];
+            max = Math.max(max, sub);
         }
         System.out.println(max);
     }
