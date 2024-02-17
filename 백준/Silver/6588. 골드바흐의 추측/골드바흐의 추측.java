@@ -11,9 +11,9 @@ public class Main {
         boolean visited[] = new boolean[INF];
         visited[0] = true;
         visited[1] = true;
-        for (int i = 2; i < INF; i++) {
+        for (int i = 2; i < INF / i; i++) {
             if (visited[i]) continue;
-            for (int j = i * 2; j < INF; j = j + i) {
+            for (int j = i * i; j < INF; j = j + i) {
                 visited[j] = true;
             }
         }
