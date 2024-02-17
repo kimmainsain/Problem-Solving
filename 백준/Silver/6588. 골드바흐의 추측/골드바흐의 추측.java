@@ -12,6 +12,7 @@ public class Main {
         visited[0] = true;
         visited[1] = true;
         for (int i = 2; i < INF; i++) {
+            if (visited[i]) continue;
             for (int j = i * 2; j < INF; j = j + i) {
                 visited[j] = true;
             }
