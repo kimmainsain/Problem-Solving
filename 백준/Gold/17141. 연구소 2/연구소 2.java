@@ -12,7 +12,7 @@ public class Main {
     static int dx[] = new int[]{1, 0, -1, 0};
     static boolean visited[][];
     static int answer = 0;
-    static int zeroCnt;
+    static int mapCnt;
     static int arr[];
     static int checkCnt;
 
@@ -26,11 +26,12 @@ public class Main {
             visited[virus.get(arr[i])[0]][virus.get(arr[i])[1]] = true;
         }
         int count = 0;
-        int tempZeroCnt = zeroCnt;
+        int tempZeroCnt = 0;
         while (!qu.isEmpty()) {
             int size = qu.size();
             while (size-- > 0) {
                 int now[] = qu.poll();
+                tempZeroCnt++;
                 for (int i = 0; i < 4; i++) {
                     int nexty = now[0] + dy[i];
                     int nextx = now[1] + dx[i];
@@ -38,14 +39,13 @@ public class Main {
                     if (visited[nexty][nextx]) continue;
                     if (map[nexty][nextx] == 1) continue;
                     visited[nexty][nextx] = true;
-                    if (map[nexty][nextx] == 0) tempZeroCnt--;
                     qu.add(new int[]{nexty, nextx, now[2] + 1});
                 }
             }
             if (qu.isEmpty()) break;
             count++;
         }
-        if (tempZeroCnt == 0) answer = Math.min(count, answer);
+        if (tempZeroCnt == mapCnt) answer = Math.min(count, answer);
     }
 
     public static void solve(int depth, int start) {
@@ -59,33 +59,6 @@ public class Main {
         }
     }
 
-    public static void check() {
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                if (map[i][j] == 0 || map[i][j] == 2) check2(i, j);
-            }
-        }
-    }
-
-    public static void check2(int y, int x) {
-        boolean visited[][] = new boolean[n][n];
-        qu.add(new int[]{y, x});
-        while (!qu.isEmpty()) {
-            int now[] = qu.poll();
-            for (int i = 0; i < 4; i++) {
-                int nexty = now[0] + dy[i];
-                int nextx = now[1] + dx[i];
-                if (nexty < 0 || nexty > n - 1 || nextx < 0 || nextx > n - 1) continue;
-                if (visited[nexty][nextx]) continue;
-                if (map[nexty][nextx] == 1) continue;
-                visited[nexty][nextx] = true;
-                map[nexty][nextx] = 1;
-                qu.add(new int [] {nexty, nextx});
-            }
-        }
-        checkCnt++;
-    }
-
     public static void main(String[] args) throws Exception {
         st = new StringTokenizer(br.readLine());
         n = Integer.parseInt(st.nextToken());
@@ -95,20 +68,19 @@ public class Main {
         qu = new ArrayDeque<>();
         virus = new ArrayList<>();
         arr = new int[m];
-        zeroCnt = 0;
+        mapCnt = n * n;
         checkCnt = 0;
         for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
             for (int j = 0; j < n; j++) {
                 int v = Integer.parseInt(st.nextToken());
                 map[i][j] = v;
-                if (v == 0) zeroCnt++;
+                if (v == 1) mapCnt--;
                 if (v == 2) virus.add(new int[]{i, j});
             }
         }
         solve(0, 0);
-        check();
-        if (answer == 2147483647 || checkCnt > m) {
+        if (answer == 2147483647) {
             System.out.println(-1);
         } else {
             System.out.println(answer);
