@@ -54,11 +54,7 @@ public class Main {
         y = Integer.parseInt(st.nextToken());
         x = Integer.parseInt(st.nextToken());
         visited[y][x] = true;
-        if (map[y][x] == 1) {
-            dfs(y, x, 0, 1);
-        } else {
-            dfs(y, x, 0, 0);
-        }
+        dfs(y, x, 0, 0);
         if (flag) System.out.println(1);
         else System.out.println(0);
     }
