@@ -19,7 +19,6 @@ public class Main {
             for (int i = 0; i < n; i++) a[i] = Integer.parseInt(st.nextToken());
             st = new StringTokenizer(br.readLine());
             for (int i = 0; i < m; i++) b[i] = Integer.parseInt(st.nextToken());
-            Arrays.sort(a);
             Arrays.sort(b);
             int answer = 0;
             for (int i = 0; i < n; i++) answer += bs(a[i], b);
