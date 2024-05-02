@@ -17,7 +17,7 @@ public class Main {
             for (int i = 0; i < n; i++) sum += Integer.parseInt(st.nextToken());
             arr[tc] = sum;
         }
-        int answer = 0;
+        long answer = 0;
         Arrays.sort(arr);
         for (int i = 1; i < t + 1; i++) {
             arr[i] = arr[i] + arr[i - 1];
