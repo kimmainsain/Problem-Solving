@@ -11,12 +11,14 @@ public class Main {
         int n = Integer.parseInt(br.readLine());
         Set<String> set = new TreeSet<>(Collections.reverseOrder());
         for (int i = 0; i < n; i++) {
-            String str[] = br.readLine().split(" ");
-            if (str[1].equals("enter")) {
-                set.add(str[0]);
+            st = new StringTokenizer(br.readLine());
+            String str1 = st.nextToken();
+            String str2 = st.nextToken();
+            if (str2.equals("enter")) {
+                set.add(str1);
                 continue;
             }
-            set.remove(str[0]);
+            set.remove(str1);
         }
         for (String str : set) sb.append(str).append("\n");
         System.out.println(sb);
