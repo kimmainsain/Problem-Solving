@@ -2,7 +2,7 @@ const path = process.platform === "linux" ? "/dev/stdin" : "input.txt";
 const input = require("fs").readFileSync(path).toString().trim().split("\n");
 
 function solution(n) {
-  const answer = new Array(51);
+  const answer = new Array(n + 1);
   answer[0] = 1;
   answer[1] = 1;
   for (let i = 2; i < n + 1; i++) {
