@@ -24,4 +24,4 @@ function solution(arr) {
   return left - 1;
 }
 
-console.log(solution(arr.sort((a, b) => a - b)));
+console.log(solution(arr));
