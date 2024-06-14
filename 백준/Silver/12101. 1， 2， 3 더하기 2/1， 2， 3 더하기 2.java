@@ -15,7 +15,7 @@ public class Main {
             if (--m != 0) return;
             for (int i = 1; i < 11; i++) {
                 if (arr[i] == 0) break;
-                sb.append(arr[i]);
+                sb.append(arr[i]).append("+");
             }
             return;
         }
@@ -33,6 +33,6 @@ public class Main {
         m = Integer.parseInt(st.nextToken());
         arr = new int[11];
         dfs(0, 1);
-        System.out.println(sb.length() == 0 ? -1 : String.join("+", sb.toString().split("")));
+        System.out.println(sb.length() == 0 ? -1 : sb.substring(0, sb.length() - 1));
     }
 }
