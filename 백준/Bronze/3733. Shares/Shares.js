@@ -1,0 +1,2 @@
+const data = require("fs").readFileSync("/dev/stdin").toString().trim().split("\n").map((v)=>v.split(" ").map(Number));
+for (let i = 0; i < data.length; i++) console.log(parseInt(data[i][1] / (data[i][0] + 1)));
