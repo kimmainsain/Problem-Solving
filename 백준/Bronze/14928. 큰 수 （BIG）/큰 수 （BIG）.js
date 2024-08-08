@@ -1,0 +1,1 @@
+console.log((BigInt(require("fs").readFileSync("/dev/stdin").toString().trim()) % 20000303n).toString());
